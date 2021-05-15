@@ -20803,7 +20803,7 @@ async function main() {
                 ` from head branch: ${headBranch}. An open pull request is found.`);
         }
         // if an open pr is found, update it. otherwise, create one
-        console.log(owner, replace, headBranch, baseBranch);
+        console.log(owner, repo, headBranch, baseBranch);
         if (pullRequest) {
             console.log(`updating existing PR (#${pullRequest.number}).`);
             const prUpdateResponse = await octokit.pulls.update({
@@ -20822,8 +20822,8 @@ async function main() {
             const prCreateResponse = await octokit.pulls.create({
                 owner: owner,
                 repo: repo,
-                head: headBranch,
-                base: baseBranch,
+                head: `${owner}:${headBranch}`,
+                base: `${owner}:${baseBranch}`,
                 title: prTitle || undefined,
                 body: prDescription || undefined,
                 draft: prCreateDraft === 'true'
