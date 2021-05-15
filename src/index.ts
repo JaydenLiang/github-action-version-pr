@@ -180,7 +180,9 @@ async function main(): Promise<void> {
                 ` from head branch: ${headBranch}. An open pull request is found.`);
         }
         // if an open pr is found, update it. otherwise, create one
+        console.log(owner, replace, headBranch, baseBranch);
         if (pullRequest) {
+            console.log(`updating existing PR (#${pullRequest.number}).`);
             const prUpdateResponse = await octokit.pulls.update({
                 owner: owner,
                 repo: repo,
@@ -193,6 +195,7 @@ async function main(): Promise<void> {
         }
         // create a pr with the above title and description.
         else {
+            console.log('creating new PR.');
             const prCreateResponse = await octokit.pulls.create({
                 owner: owner,
                 repo: repo,
