@@ -199,7 +199,7 @@ async function main(): Promise<void> {
             const prCreateResponse = await octokit.pulls.create({
                 owner: owner,
                 repo: repo,
-                head: `${owner}:${headBranch}`,
+                head: headBranch,
                 base: baseBranch,
                 title: prTitle || undefined,
                 body: prDescription || undefined,
