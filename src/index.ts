@@ -200,7 +200,7 @@ async function main(): Promise<void> {
                 owner: owner,
                 repo: repo,
                 head: `${owner}:${headBranch}`,
-                base: `${owner}:${baseBranch}`,
+                base: baseBranch,
                 title: prTitle || undefined,
                 body: prDescription || undefined,
                 draft: prCreateDraft === 'true'
